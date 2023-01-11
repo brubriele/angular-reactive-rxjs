@@ -1,18 +1,18 @@
-<po-page-default p-title="Ações">
+<po-page-default p-title="Ações" *ngIf="acoes$ | async as acoes">
   <div class="po-row">
     <div class="po-xl-6 po-lg-6 po-md-6 po-sm-6">
       <po-input p-label="Ações" [formControl]="acoesInput"></po-input>
     </div>
   </div>
 
-  <div class="td-page-wrapper" *ngIf="acoes; else emptyDataBlock"></div>
+  <div class="td-page-wrapper" *ngIf="acoes$ | async as acoes ; else emptyDataBlock"></div>
   <div class="po-row">
     <div class="po-md-4" *ngFor="let acao of acoes">
       <app-card-acoes [acao]="acao"></app-card-acoes>
     </div>
   </div>
 
-  <ng-template #emptyDataBlock>
-    <p>Não há dados</p>
-  </ng-template>
 </po-page-default>
+<ng-template #emptyDataBlock>
+  <p>Não há dados</p>
+</ng-template>
